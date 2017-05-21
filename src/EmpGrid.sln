@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpGrid.DataAccess", "EmpGr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpGrid.DataAccess.Tests", "EmpGrid.DataAccess.Tests\EmpGrid.DataAccess.Tests.csproj", "{244778DC-9392-4FCA-B73D-68F3EC779D54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpGrid.Api.Tests", "EmpGrid.Api.Tests\EmpGrid.Api.Tests.csproj", "{1F2DDB84-FC65-478E-9772-A316410E8658}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{244778DC-9392-4FCA-B73D-68F3EC779D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{244778DC-9392-4FCA-B73D-68F3EC779D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{244778DC-9392-4FCA-B73D-68F3EC779D54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F2DDB84-FC65-478E-9772-A316410E8658}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F2DDB84-FC65-478E-9772-A316410E8658}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F2DDB84-FC65-478E-9772-A316410E8658}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F2DDB84-FC65-478E-9772-A316410E8658}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
