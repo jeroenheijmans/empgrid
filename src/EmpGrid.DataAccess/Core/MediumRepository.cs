@@ -22,14 +22,24 @@ namespace EmpGrid.DataAccess.Core
             new Medium { Id = "blog", Name = "Personal Blog" },
         };
 
-        public Medium FindById(IEntityIdentity<string> id)
+        public Medium FindById(IEntityIdentity<string> identity)
         {
-            return InMemoryEntities.SingleOrDefault(e => e.Id == id.Id);
+            return FindById(identity.Id);
         }
 
-        public Medium GetById(IEntityIdentity<string> id)
+        public Medium FindById(string id)
         {
-            return FindById(id) ?? throw new EntityNotFoundException(id);
+            return InMemoryEntities.SingleOrDefault(e => e.Id == id);
+        }
+
+        public Medium GetById(IEntityIdentity<string> identity)
+        {
+            return FindById(identity.Id) ?? throw new EntityNotFoundException(identity);
+        }
+
+        public Medium GetById(string id)
+        {
+            return GetById((StringEntityIdentity)id);
         }
 
         public IEnumerable<Medium> List()

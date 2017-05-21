@@ -28,20 +28,39 @@ namespace EmpGrid.DataAccess.Core
 
         [Theory]
         [MemberData(nameof(TestMediumIdsAsMemberData))]
-        public void Can_find_all_known_mediums_by_id(string id)
+        public void Can_find_all_known_mediums_by_id_as_string(string id)
         {
             var sut = new MediumRepository();
-            var result = sut.FindById(new StringEntityIdentity { Id = id }); // TODO: Use the implicit operator or some such
+            var result = sut.FindById(id);
+            result.Id.Should().Be(id);
+            result.Name.Should().NotBeNullOrWhiteSpace();
+        }
+        [Theory]
+        [MemberData(nameof(TestMediumIdsAsMemberData))]
+        public void Can_find_all_known_mediums_by_id_as_identity(string id)
+        {
+            var sut = new MediumRepository();
+            var result = sut.FindById(new StringEntityIdentity { Id = id });
             result.Id.Should().Be(id);
             result.Name.Should().NotBeNullOrWhiteSpace();
         }
 
         [Theory]
         [MemberData(nameof(TestMediumIdsAsMemberData))]
-        public void Can_get_all_known_mediums_by_id(string id)
+        public void Can_get_all_known_mediums_by_id_as_string(string id)
         {
             var sut = new MediumRepository();
-            var result = sut.GetById(new StringEntityIdentity { Id = id }); // TODO: Use the implicit operator or some such
+            var result = sut.GetById(id);
+            result.Id.Should().Be(id);
+            result.Name.Should().NotBeNullOrWhiteSpace();
+        }
+
+        [Theory]
+        [MemberData(nameof(TestMediumIdsAsMemberData))]
+        public void Can_get_all_known_mediums_by_id_as_identity(string id)
+        {
+            var sut = new MediumRepository();
+            var result = sut.GetById(new StringEntityIdentity { Id = id });
             result.Id.Should().Be(id);
             result.Name.Should().NotBeNullOrWhiteSpace();
         }
