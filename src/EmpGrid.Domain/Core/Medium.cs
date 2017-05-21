@@ -3,7 +3,7 @@
     /// <summary>
     /// Any kind of social- or traditional medium, e.g. twitter, a blog, a home page, etc.
     /// </summary>
-    public class Medium : SingularEntity
+    public class Medium : SingularEntity, IAggregate
     {
         /// <summary>
         /// The common display name for this medium.
