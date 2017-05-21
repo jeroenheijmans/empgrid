@@ -72,5 +72,21 @@ namespace EmpGrid.DataAccess.Core
             var result = sut.List();
             result.Select(m => m.Id).Should().BeEquivalentTo(TestMediumIds);
         }
+
+        [Fact]
+        public void Get_with_identity_will_throw_if_item_doesnt_exist()
+        {
+            var sut = new MediumRepository();
+            var exception = Assert.Throws<EntityNotFoundException>(() => sut.GetById((StringEntityIdentity)"non-existent-id"));
+            exception.Message.Should().Contain("non-existent-id");
+        }
+
+        [Fact]
+        public void Get_with_string_will_throw_if_item_doesnt_exist()
+        {
+            var sut = new MediumRepository();
+            var exception = Assert.Throws<EntityNotFoundException>(() => sut.GetById("non-existent-id"));
+            exception.Message.Should().Contain("non-existent-id");
+        }
     }
 }
