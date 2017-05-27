@@ -1,4 +1,5 @@
-﻿using EmpGrid.Api.Models.Core;
+﻿using AutoMapper;
+using EmpGrid.Api.Models.Core;
 using EmpGrid.Domain;
 using EmpGrid.Domain.Core;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,17 @@ namespace EmpGrid.Api.Controllers
     public class GridController : Controller
     {
         private readonly IBulkEntityRepository<Emp> empRepo;
+        private readonly ISingularRepository<Medium> mediumRepo;
+        private readonly IMapper mapper;
 
-        public GridController(IBulkEntityRepository<Emp> empRepo)
+        public GridController(
+            IBulkEntityRepository<Emp> empRepo,
+            ISingularRepository<Medium> mediumRepo,
+            IMapper mapper)
         {
             this.empRepo = empRepo;
+            this.mediumRepo = mediumRepo;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -23,12 +31,12 @@ namespace EmpGrid.Api.Controllers
             {
                 Emps = empRepo
                     .Query()
-                    .Select(e => new EmpModel
-                    {
-                        Name = e.Name,
-                        EmailAddress = e.EmailAddress,
-                        TagLine = e.TagLine,
-                    })
+                    .Select(e => mapper.Map<EmpModel>(e))
+                    .ToArray(),
+
+                Mediums = mediumRepo
+                    .List()
+                    .Select(e => mapper.Map<MediumModel>(e))
                     .ToArray(),
             };
         }

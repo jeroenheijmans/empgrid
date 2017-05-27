@@ -25,6 +25,6 @@ namespace EmpGrid.Domain.Core
         /// <summary>
         /// The mediums where the emp can be found.
         /// </summary>
-        public ICollection<Presence> Presences { get; private set; } = new List<Presence>();
+        public ICollection<Presence> Presences { get; set; } = new List<Presence>();
     }
 }

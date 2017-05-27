@@ -11,8 +11,25 @@ namespace EmpGrid.DataAccess.Core
         // For now...
         private readonly List<Emp> FakeDatabase = new List<Emp>
         {
-            new Emp { Id = Guid.Parse("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"), Name = "John Doe", EmailAddress = "johndoe@example.org", TagLine = "The dev no one knew but everyone needed", },
-            new Emp { Id = Guid.Parse("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee2"), Name = "Richard Roe", EmailAddress = "richard@example.org", TagLine = "Hero of the day", },
+            new Emp
+            {
+                Id = Guid.Parse("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"),
+                Name = "John Doe",
+                EmailAddress = "johndoe@example.org",
+                TagLine = "The dev no one knew but everyone needed",
+                Presences = new[]
+                {
+                    new Presence { Id = Guid.Parse("00000000-bbbb-cccc-dddd-eeeeeeeeeee1"), MediumId = "twitter", Url = "fake-url", Visibility = Visibility.Public, },
+                    new Presence { Id = Guid.Parse("00000000-bbbb-cccc-dddd-eeeeeeeeeee2"), MediumId = "twitter", Url = "fake-url", Visibility = Visibility.Public, },
+                }
+            },
+            new Emp
+            {
+                Id = Guid.Parse("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee2"),
+                Name = "Richard Roe",
+                EmailAddress = "richard@example.org",
+                TagLine = "Hero of the day",
+            },
         };
 
         public Emp FindById(IEntityIdentity<Guid> identity)

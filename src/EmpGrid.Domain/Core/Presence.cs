@@ -13,7 +13,7 @@
         /// <summary>
         /// The medium associated with this presence.
         /// </summary>
-        public Medium Medium { get; set; }
+        public string MediumId { get; set; }
 
         /// <summary>
         /// Who is allowed to see this presence.
