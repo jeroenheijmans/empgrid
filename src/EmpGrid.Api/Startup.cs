@@ -38,8 +38,9 @@ namespace EmpGrid.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            var loggingSection = Configuration.GetSection("Logging");
+            loggerFactory.AddConsole(loggingSection);
+            loggerFactory.AddDebug(loggingSection.GetValue<LogLevel>("Default"));
 
             app.UseMvc();
         }

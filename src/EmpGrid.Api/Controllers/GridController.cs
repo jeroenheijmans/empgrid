@@ -3,6 +3,7 @@ using EmpGrid.Api.Models.Core;
 using EmpGrid.Domain;
 using EmpGrid.Domain.Core;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Linq;
 
 namespace EmpGrid.Api.Controllers
@@ -12,15 +13,18 @@ namespace EmpGrid.Api.Controllers
     {
         private readonly IBulkEntityRepository<Emp> empRepo;
         private readonly ISingularRepository<Medium> mediumRepo;
+        private readonly ILogger<EmpController> logger;
         private readonly IMapper mapper;
 
         public GridController(
             IBulkEntityRepository<Emp> empRepo,
             ISingularRepository<Medium> mediumRepo,
+            ILogger<EmpController> logger,
             IMapper mapper)
         {
             this.empRepo = empRepo;
             this.mediumRepo = mediumRepo;
+            this.logger = logger;
             this.mapper = mapper;
         }
 

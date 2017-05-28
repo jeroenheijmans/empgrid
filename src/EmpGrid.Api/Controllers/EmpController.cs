@@ -3,6 +3,7 @@ using EmpGrid.Api.Models.Core;
 using EmpGrid.Domain;
 using EmpGrid.Domain.Core;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 
@@ -11,14 +12,17 @@ namespace EmpGrid.Api.Controllers
     [Route("api/emp")]
     public class EmpController
     {
+        private readonly ILogger<EmpController> logger;
         private readonly IBulkEntityRepository<Emp> empRepository;
         private readonly IMapper mapper;
 
         public EmpController(
             IBulkEntityRepository<Emp> empRepository,
+            ILogger<EmpController> logger,
             IMapper mapper)
         {
             this.empRepository = empRepository;
+            this.logger = logger;
             this.mapper = mapper;
         }
 
@@ -41,7 +45,12 @@ namespace EmpGrid.Api.Controllers
         [HttpPut("{id}")]
         public void Put(Guid id, [FromBody]EmpModel empModel)
         {
-            // TODO: Validation
+            logger.LogInformation("PUT api/emp/{0}", id);
+            logger.LogTrace("Adding model {0}", empModel);
+
+            // TODO: Authentication, authorization.
+            // TODO: Validation.
+
             empModel.Id = id;
             var emp = mapper.Map<Emp>(empModel);
             empRepository.Put(emp);
@@ -50,7 +59,10 @@ namespace EmpGrid.Api.Controllers
         [HttpDelete("{id}")]
         public void Delete(Guid id)
         {
-            // TODO: Authentication, authorization, and logging.
+            logger.LogInformation("DELETE api/emp/{0}", id);
+            
+            // TODO: Authentication, authorization.
+
             empRepository.Delete(id);
         }
     }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.ApplicationInsights.Extensibility.Implementation;
 
 namespace EmpGrid.Api
 {
@@ -19,6 +16,9 @@ namespace EmpGrid.Api
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
                 .Build();
+
+            // Typically we don't need ApplicationInsights in the Diagnostics window.
+            TelemetryDebugWriter.IsTracingDisabled = true;
 
             host.Run();
         }
