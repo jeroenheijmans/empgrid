@@ -9,7 +9,7 @@ namespace EmpGrid.DataAccess.Core
     public class EmpRepository : IBulkEntityRepository<Emp>
     {
         // For now...
-        private readonly List<Emp> FakeDatabase = new List<Emp>
+        private static readonly List<Emp> FakeDatabase = new List<Emp>
         {
             new Emp
             {
@@ -54,7 +54,14 @@ namespace EmpGrid.DataAccess.Core
 
         public void Put(Emp entity)
         {
-            throw new NotImplementedException();
+            var existingEntity = FindById(entity.Id);
+
+            if (existingEntity != null)
+            {
+                FakeDatabase.Remove(existingEntity);
+            }
+
+            FakeDatabase.Add(entity);
         }
 
         public void Put(params Emp[] entities)

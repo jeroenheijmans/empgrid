@@ -22,9 +22,9 @@ namespace EmpGrid.Api
         {
             // TODO: Organize in Profiles
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Emp, Models.Core.EmpModel>();
                 cfg.CreateMap<Medium, Models.Core.MediumModel>();
-                cfg.CreateMap<Presence, Models.Core.PresenceModel>();
+                cfg.CreateMap<Emp, Models.Core.EmpModel>().ReverseMap();
+                cfg.CreateMap<Presence, Models.Core.PresenceModel>().ReverseMap();
             });
         }
     }
