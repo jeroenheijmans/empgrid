@@ -13,6 +13,8 @@ namespace EmpGrid.Domain
     {
         void Put(T entity);
         void Put(params T[] entities);
+        void Delete(IEntityIdentity<Guid> identity);
+        void Delete(Guid id);
         IQueryable<T> Query();
     }
 }

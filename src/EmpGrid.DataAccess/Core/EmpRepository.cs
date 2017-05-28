@@ -32,6 +32,17 @@ namespace EmpGrid.DataAccess.Core
             },
         };
 
+        public void Delete(IEntityIdentity<Guid> identity)
+        {
+            Delete(identity.Id);
+        }
+
+        public void Delete(Guid id)
+        {
+            var item = GetById(id);
+            FakeDatabase.Remove(item);
+        }
+
         public Emp FindById(IEntityIdentity<Guid> identity)
         {
             return FindById(identity.Id);

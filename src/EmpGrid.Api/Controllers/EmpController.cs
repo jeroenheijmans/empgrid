@@ -46,5 +46,12 @@ namespace EmpGrid.Api.Controllers
             var emp = mapper.Map<Emp>(empModel);
             empRepository.Put(emp);
         }
+        
+        [HttpDelete("{id}")]
+        public void Delete(Guid id)
+        {
+            // TODO: Authentication, authorization, and logging.
+            empRepository.Delete(id);
+        }
     }
 }
