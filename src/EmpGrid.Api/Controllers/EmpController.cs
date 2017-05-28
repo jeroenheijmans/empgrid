@@ -10,20 +10,17 @@ using System.Linq;
 namespace EmpGrid.Api.Controllers
 {
     [Route("api/emp")]
-    public class EmpController
+    public class EmpController : EmpGridController
     {
-        private readonly ILogger<EmpController> logger;
         private readonly IBulkEntityRepository<Emp> empRepository;
-        private readonly IMapper mapper;
 
         public EmpController(
             IBulkEntityRepository<Emp> empRepository,
             ILogger<EmpController> logger,
             IMapper mapper)
+            : base(logger, mapper)
         {
             this.empRepository = empRepository;
-            this.logger = logger;
-            this.mapper = mapper;
         }
 
         [HttpGet()]

@@ -9,23 +9,20 @@ using System.Linq;
 namespace EmpGrid.Api.Controllers
 {
     [Route("api/grid")]
-    public class GridController : Controller
+    public class GridController : EmpGridController
     {
         private readonly IBulkEntityRepository<Emp> empRepo;
         private readonly ISingularRepository<Medium> mediumRepo;
-        private readonly ILogger<EmpController> logger;
-        private readonly IMapper mapper;
 
         public GridController(
             IBulkEntityRepository<Emp> empRepo,
             ISingularRepository<Medium> mediumRepo,
             ILogger<EmpController> logger,
             IMapper mapper)
+            : base(logger, mapper)
         {
             this.empRepo = empRepo;
             this.mediumRepo = mediumRepo;
-            this.logger = logger;
-            this.mapper = mapper;
         }
 
         [HttpGet]
