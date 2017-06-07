@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace EmpGrid.Api.Controllers
 {
-    [Route("api/grid")]
+    [Route("api/v1/grid")]
     public class GridController : EmpGridController
     {
         private readonly IBulkEntityRepository<Emp> empRepo;
