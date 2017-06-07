@@ -1,0 +1,12 @@
+﻿body {
+    background: #fefefe;
+    color: #333;
+}
+
+pre {
+    font-family: Consolas;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    box-shadow: 2px 2px 2px #ccc;
+    padding: 10px;
+}

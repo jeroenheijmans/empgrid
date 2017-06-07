@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using EmpGrid.Domain;
 using EmpGrid.Domain.Core;
 using EmpGrid.DataAccess.Core;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace EmpGrid.Api
 {
@@ -43,6 +42,8 @@ namespace EmpGrid.Api
             loggerFactory.AddConsole(loggingSection);
             loggerFactory.AddDebug(loggingSection.GetValue<LogLevel>("Default"));
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }

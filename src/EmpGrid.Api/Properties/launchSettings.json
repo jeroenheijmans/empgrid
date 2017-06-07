@@ -11,7 +11,6 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/v1/grid",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
