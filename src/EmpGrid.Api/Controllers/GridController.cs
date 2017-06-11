@@ -38,7 +38,7 @@ namespace EmpGrid.Api.Controllers
                 Mediums = mediumRepo
                     .List()
                     .Select(e => mapper.Map<MediumModel>(e))
-                    .ToArray(),
+                    .ToDictionary(m => m.Id, m => m),
             };
         }
     }

@@ -9,17 +9,17 @@ namespace EmpGrid.DataAccess.Core
     {
         private static readonly IList<Medium> InMemoryEntities = new []
         {
-            new Medium { Id = "twitter", Name = "Twitter" },
-            new Medium { Id = "facebook", Name = "Facebook" },
-            new Medium { Id = "linkedin", Name = "LinkedIn" },
-            new Medium { Id = "google-plus", Name = "Google+" },
-            new Medium { Id = "meetup", Name = "MeetUp" },
-            new Medium { Id = "goodreads", Name = "GoodReads" },
-            new Medium { Id = "github", Name = "GitHub" },
-            new Medium { Id = "gitlab", Name = "GitLab" },
-            new Medium { Id = "bitbucket", Name = "BitBucket" },            
-            new Medium { Id = "personal-website", Name = "Personal Website" },
-            new Medium { Id = "blog", Name = "Personal Blog" },
+            new Medium("twitter", "Twitter"),
+            new Medium("facebook", "Facebook"),
+            new Medium("linkedin", "LinkedIn"),
+            new Medium("google-plus", "Google+"),
+            new Medium("meetup", "MeetUp"),
+            new Medium("goodreads", "GoodReads"),
+            new Medium("github", "GitHub"),
+            new Medium("gitlab", "GitLab"),
+            new Medium("bitbucket", "BitBucket"),            
+            new Medium("personal-website", "Personal Website"),
+            new Medium("blog", "Personal Blog"),
         };
 
         public Medium FindById(IEntityIdentity<string> identity)

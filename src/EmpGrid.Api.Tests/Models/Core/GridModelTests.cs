@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using System.Collections.Generic;
 using Xunit;
 
 namespace EmpGrid.Api.Models.Core
@@ -15,7 +16,15 @@ namespace EmpGrid.Api.Models.Core
         [Fact]
         public void ToString_includes_nr_of_mediums()
         {
-            var sut = new GridModel { Mediums = new MediumModel[4] };
+            var sut = new GridModel {
+                Mediums = new Dictionary<string, MediumModel>
+                {
+                    { "a", new MediumModel() },
+                    { "b", new MediumModel() },
+                    { "c", new MediumModel() },
+                    { "d", new MediumModel() },
+                }
+            };
             sut.ToString().Should().Contain("4");
         }
     }

@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Content Include="wwwroot\app\MonolythicPrototype.js" />
-    <Content Include="wwwroot\app\MyMonolythicPrototype.js" />
     <Content Include="wwwroot\css\MonolythicPrototypeStyles.css" />
     <Content Include="wwwroot\index.html" />
   </ItemGroup>

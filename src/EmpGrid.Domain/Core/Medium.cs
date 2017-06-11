@@ -6,6 +6,15 @@
     public class Medium : SingularEntity, IAggregate
     {
         /// <summary>
+        /// Constructs a default Medium instance.
+        /// </summary>
+        public Medium(string id, string name)
+        {
+            this.Id = id;
+            this.Name = name;
+        }
+
+        /// <summary>
         /// The common display name for this medium.
         /// </summary>
         public string Name { get; set; }

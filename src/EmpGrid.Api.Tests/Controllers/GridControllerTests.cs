@@ -16,6 +16,15 @@ namespace EmpGrid.Api.Controllers
         private Mock<ISingularRepository<Medium>> mediumRepoMock = new Mock<ISingularRepository<Medium>>();
         private Mock<IMapper> mapperMock = new Mock<IMapper>();
 
+        public GridControllerTests()
+        {
+            // Perhaps it makes more sense to just use the real mappers. Oh well, this
+            // works for now...
+            mapperMock
+                .Setup(m => m.Map<MediumModel>(It.IsAny<Medium>()))
+                .Returns((Medium m) => new MediumModel { Id = m.Id, Name = m.Name });
+        }
+
         private GridController CreateSut()
         {
             return new GridController(
@@ -47,11 +56,11 @@ namespace EmpGrid.Api.Controllers
 
             mediumRepoMock
                 .Setup(r => r.List())
-                .Returns((new Medium[2]).ToList());
+                .Returns((new[] { new Medium("x", "X"), new Medium("y", "Y") }).ToList());
 
             var result = sut.Index();
 
-            result.Mediums.Length.Should().Be(2);
+            result.Mediums.Count.Should().Be(2);
         }
 
         [Fact]
@@ -69,17 +78,21 @@ namespace EmpGrid.Api.Controllers
         }
 
         [Fact]
-        public void Index_maps_mediums()
+        public void Index_maps_mediums_to_dictionary()
         {
             var sut = CreateSut();
 
             mediumRepoMock
                 .Setup(r => r.List())
-                .Returns((new Medium[2]).ToList());
+                .Returns((new[] {
+                    new Medium("id1", "Name 1"),
+                    new Medium("id2", "Name 2"),
+                }).ToList());
 
             var result = sut.Index();
 
-            mapperMock.Verify(m => m.Map<MediumModel>(It.IsAny<Medium>()), Times.Exactly(2));
+            result.Mediums["id1"].Name.Should().Be("Name 1");
+            result.Mediums["id2"].Name.Should().Be("Name 2");
         }
     }
 }
