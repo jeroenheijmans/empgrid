@@ -166,8 +166,157 @@
 
   {
     "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee7",
+    "name": "Dr. Ir. Maria-Suzanne Engelbrecht van Voorthuyzen - van Sandten",
+    "emailAddress": "omnipresent@example.org",
+    "tagLine": "An example of someone who is present on just about every known medium, to check if the front-end can cope with that. This person also has a very, very long tag line that might cause UI issues unless it is properly tested and engineered for.",
+    "presences": [
+      {
+        "id": "00000000-bbbb-ffff-aaaa-eeeeeeeeee01",
+        "mediumId": "twitter",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-ffff-aaaa-eeeeeeeeee02",
+        "mediumId": "facebook",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-ffff-aaaa-eeeeeeeeee03",
+        "mediumId": "linkedin",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-ffff-aaaa-eeeeeeeeee04",
+        "mediumId": "google-plus",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-ffff-aaaa-eeeeeeeeee05",
+        "mediumId": "meetup",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-ffff-aaaa-eeeeeeeeee06",
+        "mediumId": "goodreads",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-ffff-aaaa-eeeeeeeeee07",
+        "mediumId": "github",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-ffff-aaaa-eeeeeeeeee08",
+        "mediumId": "gitlab",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-ffff-aaaa-eeeeeeeeee09",
+        "mediumId": "bitbucket",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-ffff-aaaa-eeeeeeeeee0a",
+        "mediumId": "personal-website",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-ffff-aaaa-eeeeeeeeee0b",
+        "mediumId": "blog",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-ffff-aaaa-eeeeeeeeee0c",
+        "mediumId": "stackoverflow",
+        "url": "fake-url"
+      }
+    ]
+  },
+
+  {
+    "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee8",
     "name": "Catalina von Steunbadhen",
     "emailAddress": "",
     "tagLine": ""
+  },
+
+  {
+    "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee9",
+    "name": "Brea de Vries",
+    "emailAddress": "breaa@example.org",
+    "tagLine": "",
+    "presences": [
+      {
+        "id": "00000000-aabb-cccc-aaaa-eeeeeeeeee01",
+        "mediumId": "twitter",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-aabb-cccc-aaaa-eeeeeeeeee02",
+        "mediumId": "google-plus",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-aabb-cccc-aaaa-eeeeeeeeee04",
+        "mediumId": "blog",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-aabb-cccc-aaaa-eeeeeeeeee05",
+        "mediumId": "goodreads",
+        "url": "fake-url"
+      }
+    ]
+  },
+
+  {
+    "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeea",
+    "name": "Rick de Jonge",
+    "emailAddress": "rick@example.org",
+    "tagLine": "Example emp in this grid with only a few properties.",
+    "presences": [
+      {
+        "id": "00000000-abbb-ffff-aaaa-eeeeeeeeee01",
+        "mediumId": "twitter",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-abbb-ffff-aaaa-eeeeeeeeee02",
+        "mediumId": "facebook",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-abbb-ffff-aaaa-eeeeeeeeee07",
+        "mediumId": "github",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-abbb-ffff-aaaa-eeeeeeeeee08",
+        "mediumId": "gitlab",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-abbb-ffff-aaaa-eeeeeeeeee09",
+        "mediumId": "bitbucket",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-abbb-ffff-aaaa-eeeeeeeeee0c",
+        "mediumId": "stackoverflow",
+        "url": "fake-url"
+      }
+    ]
+  },
+
+  {
+    "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeeb",
+    "name": "Fillipe Gonzales",
+    "presences": [
+      {
+        "id": "00000000-abbb-afff-aaaa-eeeeeeeeee0c",
+        "mediumId": "stackoverflow",
+        "url": "fake-url"
+      }
+    ]
   }
 ]
