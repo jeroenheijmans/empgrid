@@ -8,24 +8,38 @@ body {
     color: #333;
 }
 
+header {
+    text-align: center;
+}
+
 .grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-gap: 20px;
+    padding: 10px;
 }
 
 .emp {
-    
-    width: 30em;
-    height: 20em;
     border: 10px solid white;
     box-shadow: -2px -2px 8px #eee, 
                  8px  8px 16px #eee;
     background-color: #fff;
-    margin: 10px;
     padding: 10px;
 }
 
+.emp-header {
+    margin: 0;
+}
+
+.emp-mailto {
+    float: right;
+}
+
+.emp-mailto a {
+    text-decoration: none;
+}
+
 .emp-tagline {
+    margin: 5px 0 10px 0;
     font-style: italic;
 }
 

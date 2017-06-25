@@ -7,18 +7,26 @@
     <link type="text/css" rel="stylesheet" href="css/MonolythicPrototypeStyles.css" />
 </head>
 <body>
-    <h1>EmpGrid Beta</h1>
+    <header class="header">
+        <h1>EmpGrid Beta</h1>
+    </header>
     
-    <div class="grid" data-bind="foreach: emps">
+    <div id="grid" 
+         class="grid" 
+         data-bind="foreach: emps, style: { 'grid-template-columns': colCss, }">
+        
         <div class="emp">
-            <h3 data-bind="text: name"></h3>
+            <h3 class="emp-header">
+                <span data-bind="text: name"></span>
+                <span class="emp-mailto">
+                    <a data-bind="attr: { href: mailto }">✉</a>
+                </span>
+            </h3>
+            
             <p class="emp-tagline" data-bind="text: tagLine"></p>
-            <div class="emp-contact-info">
-                <p data-bind="text: emailAddress"></p>
-            </div>
             <div class="emp-presences" data-bind="foreach: presences">
                 <div class="emp-presence">
-                    <a data-bind="attr: { href: url }, text: $root.mediums[$data.mediumId].name"></a>
+                    <a data-bind="attr: { href: url }, text: name"></a>
                 </div>
             </div>
         </div>
