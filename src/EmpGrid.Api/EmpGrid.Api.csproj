@@ -28,5 +28,10 @@
     <ProjectReference Include="..\EmpGrid.DataAccess\EmpGrid.DataAccess.csproj" />
     <ProjectReference Include="..\EmpGrid.Domain\EmpGrid.Domain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="ExampleDataSeed.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
 </Project>

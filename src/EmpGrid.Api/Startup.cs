@@ -13,6 +13,8 @@ namespace EmpGrid.Api
     {
         public Startup(IHostingEnvironment env)
         {
+            EmpRepository.SeedFakeDatabase("ExampleDataSeed.json");
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)

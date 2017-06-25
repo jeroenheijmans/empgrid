@@ -1,0 +1,72 @@
+﻿[
+  {
+    "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1",
+    "name": "John Doe",
+    "emailAddress": "johndoe@example.org",
+    "tagLine": "The dev no one knew but everyone needed",
+    "presences": [
+      {
+        "id": "00000000-bbbb-cccc-dddd-eeeeeeeeeee1",
+        "mediumId": "twitter",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-cccc-dddd-eeeeeeeeeee2",
+        "mediumId": "meetup",
+        "url": "fake-url"
+      }
+    ]
+  },
+
+  {
+    "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee2",
+    "name": "Richard Roe",
+    "emailAddress": "richard@example.org",
+    "tagLine": "Hero of the day"
+  },
+
+  {
+    "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee3",
+    "name": "Marcus Scipio Africanus",
+    "emailAddress": "scipio.africanus@example.org",
+    "tagLine": "Conqueror of Gaul, Hispania, and all the lands of north Africa. Interested in all JS framewworks and then some. This is a long test tagline.",
+    "presences": [
+      {
+        "id": "00000000-bbbb-cccc-dddd-eeeeeeeeee01",
+        "mediumId": "twitter",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-cccc-dddd-eeeeeeeeee02",
+        "mediumId": "meetup",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-cccc-dddd-eeeeeeeeee03",
+        "mediumId": "personal-website",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-cccc-dddd-eeeeeeeeee04",
+        "mediumId": "blog",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-cccc-dddd-eeeeeeeeee05",
+        "mediumId": "goodreads",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-cccc-dddd-eeeeeeeeee06",
+        "mediumId": "linkedin",
+        "url": "fake-url"
+      }
+    ]
+  },
+  {
+    "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee4",
+    "name": "Maria Afterstone",
+    "emailAddress": "",
+    "tagLine": ""
+  }
+]
