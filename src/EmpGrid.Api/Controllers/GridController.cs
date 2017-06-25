@@ -9,7 +9,7 @@ using System.Linq;
 namespace EmpGrid.Api.Controllers
 {
     [Route("api/v1/grid")]
-    public class GridController : EmpGridController
+    public class GridController : BaseController
     {
         private readonly IBulkEntityRepository<Emp> empRepo;
         private readonly ISingularRepository<Medium> mediumRepo;

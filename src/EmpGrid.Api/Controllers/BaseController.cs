@@ -6,12 +6,12 @@ using Microsoft.Extensions.Logging;
 namespace EmpGrid.Api.Controllers
 {
     [EntityNotFoundExceptionFilter]
-    public abstract class EmpGridController : Controller
+    public abstract class BaseController : Controller
     {
         protected readonly ILogger<EmpController> logger;
         protected readonly IMapper mapper;
 
-        public EmpGridController(ILogger<EmpController> logger, IMapper mapper)
+        public BaseController(ILogger<EmpController> logger, IMapper mapper)
         {
             this.logger = logger;
             this.mapper = mapper;
