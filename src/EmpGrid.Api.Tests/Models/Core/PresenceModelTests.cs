@@ -1,5 +1,4 @@
-﻿using EmpGrid.Domain.Core;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 
 namespace EmpGrid.Api.Models.Core
@@ -18,13 +17,6 @@ namespace EmpGrid.Api.Models.Core
         {
             var sut = new PresenceModel { Url = "http://fake-url" };
             sut.ToString().Should().Contain("http://fake-url");
-        }
-
-        [Fact]
-        public void ToString_includes_Visibility()
-        {
-            var sut = new PresenceModel { Visibility = Visibility.Organization };
-            sut.ToString().Should().Contain("Organization");
         }
     }
 }
