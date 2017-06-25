@@ -63,9 +63,110 @@
       }
     ]
   },
+
   {
     "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee4",
     "name": "Maria Afterstone",
+    "emailAddress": "",
+    "tagLine": ""
+  },
+
+  {
+    "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee5",
+    "name": "Jeroen Heijmans",
+    "emailAddress": "info@jeroenheijmans.nl",
+    "tagLine": "Developer, gamer, and amateur chef from the Netherlands.",
+    "presences": [
+      {
+        "id": "00000000-bbbb-cccc-cccc-eeeeeeeeee01",
+        "mediumId": "personal-website",
+        "url": "http://www.jeroenheijmans.nl/"
+      },
+      {
+        "id": "00000000-bbbb-cccc-cccc-eeeeeeeeee02",
+        "mediumId": "blog",
+        "url": "http://blog.jeroenheijmans.nl/"
+      },
+      {
+        "id": "00000000-bbbb-cccc-cccc-eeeeeeeeee03",
+        "mediumId": "twitter",
+        "url": "https://twitter.com/jeroenheijmans"
+      },
+      {
+        "id": "00000000-bbbb-cccc-cccc-eeeeeeeeee04",
+        "mediumId": "meetup",
+        "url": "https://www.meetup.com/members/187488015/"
+      },
+      {
+        "id": "00000000-bbbb-cccc-cccc-eeeeeeeeee05",
+        "mediumId": "goodreads",
+        "url": "https://www.goodreads.com/jeroenheijmans"
+      },
+      {
+        "id": "00000000-bbbb-cccc-cccc-eeeeeeeeee06",
+        "mediumId": "linkedin",
+        "url": "https://www.linkedin.com/in/jeroenheijmans82/"
+      },
+      {
+        "id": "00000000-bbbb-cccc-cccc-eeeeeeeeee07",
+        "mediumId": "stackoverflow",
+        "url": "https://stackoverflow.com/users/419956/jeroen"
+      },
+      {
+        "id": "00000000-bbbb-cccc-cccc-eeeeeeeeee08",
+        "mediumId": "github",
+        "url": "https://github.com/jeroenheijmans"
+      },
+      {
+        "id": "00000000-bbbb-cccc-cccc-eeeeeeeeee09",
+        "mediumId": "gitlab",
+        "url": "https://gitlab.com/jeroenheijmans"
+      }
+    ]
+  },
+
+  {
+    "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee6",
+    "name": "Edgar Allen Poe",
+    "emailAddress": "eapoe@example.org",
+    "tagLine": "A silent man is a mysterious man.",
+    "presences": [
+      {
+        "id": "00000000-bbbb-cccc-aaaa-eeeeeeeeee01",
+        "mediumId": "twitter",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-cccc-aaaa-eeeeeeeeee02",
+        "mediumId": "google-plus",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-cccc-aaaa-eeeeeeeeee03",
+        "mediumId": "personal-website",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-cccc-aaaa-eeeeeeeeee04",
+        "mediumId": "blog",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-cccc-aaaa-eeeeeeeeee05",
+        "mediumId": "goodreads",
+        "url": "fake-url"
+      },
+      {
+        "id": "00000000-bbbb-cccc-aaaa-eeeeeeeeee06",
+        "mediumId": "linkedin",
+        "url": "fake-url"
+      }
+    ]
+  },
+
+  {
+    "id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee7",
+    "name": "Catalina von Steunbadhen",
     "emailAddress": "",
     "tagLine": ""
   }

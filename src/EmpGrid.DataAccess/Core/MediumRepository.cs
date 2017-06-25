@@ -20,6 +20,7 @@ namespace EmpGrid.DataAccess.Core
             new Medium("bitbucket", "BitBucket"),            
             new Medium("personal-website", "Personal Website"),
             new Medium("blog", "Personal Blog"),
+            new Medium("stackoverflow", "Stack Overflow"),
         };
 
         public Medium FindById(IEntityIdentity<string> identity)

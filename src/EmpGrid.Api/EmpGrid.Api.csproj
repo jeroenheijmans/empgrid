@@ -30,7 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Update="ExampleDataSeed.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

@@ -21,6 +21,7 @@ namespace EmpGrid.DataAccess.Core
             "bitbucket",
             "personal-website",
             "blog",
+            "stackoverflow",
         };
 
         public static IList<object[]> TestMediumIdsAsMemberData =>
