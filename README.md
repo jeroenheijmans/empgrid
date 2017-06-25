@@ -19,6 +19,12 @@ A very short description of the entities in this domain:
 
 In short: a **Grid** is a list of **Emps** with their **Presences** on various **Mediums**.
 
+## Example
+
+Warning: the example below might well be out of date when you view it, because this young project is still heavily in flux. It should, however, provide *some* insight to what the project is about:
+
+![beta-example-screenshot.png](beta-example-screenshot.png)
+
 ## TO DO
 
 While this project is still in flux, a simple bullet list here is preferable to GitHub issues or whatnot.
