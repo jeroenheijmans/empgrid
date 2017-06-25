@@ -19,6 +19,9 @@ header {
 }
 
 .emp {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border: 10px solid white;
     box-shadow: -2px -2px 8px #eee, 
                  8px  8px 16px #eee;
@@ -26,16 +29,12 @@ header {
     padding: 10px;
 }
 
-.emp-header {
+.emp-header h3 {
     margin: 0;
 }
 
 .emp-mailto {
     float: right;
-}
-
-.emp-mailto a {
-    text-decoration: none;
 }
 
 .emp-tagline {
@@ -45,4 +44,12 @@ header {
 
 .emp-presence {
     display: inline-block;
+    font-size: 32px;
+    margin-right: 2px;
+}
+
+.emp-mailto a,
+.emp-presence a {
+    text-decoration: none;
+    color: #5b7986;
 }

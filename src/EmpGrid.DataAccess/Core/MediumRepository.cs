@@ -9,18 +9,18 @@ namespace EmpGrid.DataAccess.Core
     {
         private static readonly IList<Medium> InMemoryEntities = new []
         {
-            new Medium("twitter", "Twitter"),
-            new Medium("facebook", "Facebook"),
-            new Medium("linkedin", "LinkedIn"),
-            new Medium("google-plus", "Google+"),
-            new Medium("meetup", "MeetUp"),
-            new Medium("goodreads", "GoodReads"),
-            new Medium("github", "GitHub"),
-            new Medium("gitlab", "GitLab"),
-            new Medium("bitbucket", "BitBucket"),            
-            new Medium("personal-website", "Personal Website"),
-            new Medium("blog", "Personal Blog"),
-            new Medium("stackoverflow", "Stack Overflow"),
+            new Medium("twitter", "Twitter", "twitter-square"),
+            new Medium("facebook", "Facebook", "facebook-square"),
+            new Medium("linkedin", "LinkedIn", "linkedin-square"),
+            new Medium("google-plus", "Google+", "google-plus-square"),
+            new Medium("meetup", "MeetUp", "meetup"),
+            new Medium("goodreads", "GoodReads", "book"), // https://github.com/FortAwesome/Font-Awesome/issues/1715
+            new Medium("github", "GitHub", "github-square"),
+            new Medium("gitlab", "GitLab", "gitlab"),
+            new Medium("bitbucket", "BitBucket", "bitbucket-square"),            
+            new Medium("personal-website", "Personal Website", "home"),
+            new Medium("blog", "Personal Blog", "rss-square"),
+            new Medium("stackoverflow", "Stack Overflow", "stack-overflow"),
         };
 
         public Medium FindById(IEntityIdentity<string> identity)

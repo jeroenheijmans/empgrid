@@ -8,15 +8,21 @@
         /// <summary>
         /// Constructs a default Medium instance.
         /// </summary>
-        public Medium(string id, string name)
+        public Medium(string id, string name, string fontAwesomeClass)
         {
             this.Id = id;
             this.Name = name;
+            this.FontAwesomeClass = fontAwesomeClass;
         }
 
         /// <summary>
         /// The common display name for this medium.
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// The canonical class name for the font-awesome icon.
+        /// </summary>
+        public string FontAwesomeClass { get; set; }
     }
 }

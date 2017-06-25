@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>EmpGrid Beta</title>
     <link rel="icon" href="img/favicon.png?v=beta">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
     <link type="text/css" rel="stylesheet" href="css/MonolythicPrototypeStyles.css" />
 </head>
 <body>
@@ -13,26 +14,33 @@
     
     <div id="grid" 
          class="grid" 
-         data-bind="foreach: emps, style: { 'grid-template-columns': colCss, }">
+         style="display: none"
+         data-bind="foreach: emps, 
+                    style: { display: 'grid', 'grid-template-columns': colCss, }">
         
         <div class="emp">
-            <h3 class="emp-header">
-                <span data-bind="text: name"></span>
-                <span class="emp-mailto">
-                    <a data-bind="attr: { href: mailto }">✉</a>
-                </span>
-            </h3>
-            
-            <p class="emp-tagline" data-bind="text: tagLine"></p>
+            <div class="emp-header">
+                <h3>
+                    <span data-bind="text: name"></span>
+                    <span class="emp-mailto" data-bind="visible: showMailtoLink">
+                        <a data-bind="attr: { href: mailto }">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </span>
+                </h3>
+                <p class="emp-tagline" data-bind="text: tagLine"></p>
+            </div>
             <div class="emp-presences" data-bind="foreach: presences">
                 <div class="emp-presence">
-                    <a data-bind="attr: { href: url }, text: name"></a>
+                    <a data-bind="attr: { href: url, title: name }" target="_blank">
+                        <span data-bind="html: renderHtml"></span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" integrity="sha256-owX7sroiO/O1a7h3a4X29A1g3QgqdNvijRQ7V5TH45M=" crossorigin="anonymous"></script>
     <script src="app/MonolythicPrototype.js"></script>
 </body>
 </html>

@@ -56,7 +56,7 @@ namespace EmpGrid.Api.Controllers
 
             mediumRepoMock
                 .Setup(r => r.List())
-                .Returns((new[] { new Medium("x", "X"), new Medium("y", "Y") }).ToList());
+                .Returns((new[] { new Medium("x", "X", "x"), new Medium("y", "Y", "y") }).ToList());
 
             var result = sut.Index();
 
@@ -85,8 +85,8 @@ namespace EmpGrid.Api.Controllers
             mediumRepoMock
                 .Setup(r => r.List())
                 .Returns((new[] {
-                    new Medium("id1", "Name 1"),
-                    new Medium("id2", "Name 2"),
+                    new Medium("id1", "Name 1", "fa1"),
+                    new Medium("id2", "Name 2", "fa2"),
                 }).ToList());
 
             var result = sut.Index();

@@ -24,10 +24,11 @@ In short: a **Grid** is a list of **Emps** with their **Presences** on various *
 While this project is still in flux, a simple bullet list here is preferable to GitHub issues or whatnot.
 
 - Authentication and Authorization
-- Experiment with CSS-Grid and Flexbox for designs
 - Craft a real logo along with a real nice favicon
 - Create a real, decent, first design
+- Proper layout on varying viewport sizes
 - Persistence
+- Import/Export
 - Configurable access to specific parts
 - Icons for known Mediums
 - Avatars for Emps
