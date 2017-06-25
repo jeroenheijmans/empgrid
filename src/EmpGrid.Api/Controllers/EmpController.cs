@@ -2,6 +2,7 @@
 using EmpGrid.Api.Models.Core;
 using EmpGrid.Domain;
 using EmpGrid.Domain.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -39,6 +40,7 @@ namespace EmpGrid.Api.Controllers
             return mapper.Map<EmpModel>(entity);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public void Put(Guid id, [FromBody]EmpModel empModel)
         {
@@ -53,6 +55,7 @@ namespace EmpGrid.Api.Controllers
             empRepository.Put(emp);
         }
         
+        [Authorize]
         [HttpDelete("{id}")]
         public void Delete(Guid id)
         {
