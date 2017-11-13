@@ -8,7 +8,7 @@ namespace EmpGrid.Api
 {
     public class StartupAutomapperTests
     {
-        public StartupAutomapperTests()
+        static StartupAutomapperTests()
         {
             StartupAutomapper.InitializeMappers();
         }
