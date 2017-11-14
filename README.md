@@ -38,12 +38,10 @@ While this project is still in flux, a simple bullet list here is preferable to 
 - Configurable access to specific parts
 - Icons for known Mediums
 - Avatars for Emps
-- linkable e-mail addresses
+- Linkable e-mail addresses
 - Emp edit screen
 - Rewrite floating-boxes to actual grid
 - Placeholder texts for Emps without details
-- Review and improve HTTP Status Codes for API
-- Document public API incl website (Swagger?)
 
 Ideas for the more distant future:
 
