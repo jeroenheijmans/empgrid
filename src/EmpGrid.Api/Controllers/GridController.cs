@@ -17,7 +17,7 @@ namespace EmpGrid.Api.Controllers
         public GridController(
             IBulkEntityRepository<Emp> empRepo,
             ISingularRepository<Medium> mediumRepo,
-            ILogger<EmpController> logger,
+            ILogger<GridController> logger,
             IMapper mapper)
             : base(logger, mapper)
         {

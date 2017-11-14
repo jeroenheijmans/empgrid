@@ -30,7 +30,7 @@ namespace EmpGrid.Api.Controllers
             return new GridController(
                 empRepoMock.Object,
                 mediumRepoMock.Object,
-                new Mock<ILogger<EmpController>>().Object,
+                new Mock<ILogger<GridController>>().Object,
                 mapperMock.Object
             );
         }
