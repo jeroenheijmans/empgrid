@@ -3,6 +3,7 @@ using EmpGrid.Api.Models.Core;
 using EmpGrid.Domain;
 using EmpGrid.Domain.Core;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -52,7 +53,13 @@ namespace EmpGrid.Api.Controllers
 
             empModel.Id = id;
             var emp = mapper.Map<Emp>(empModel);
-            empRepository.Put(emp);
+            var result = empRepository.Put(emp);
+
+            logger.LogInformation("PUT api/emp/{0} result {1}", id, result);
+
+            HttpContext.Response.StatusCode = (result == PutResult.Created)
+                ? StatusCodes.Status201Created 
+                : StatusCodes.Status200OK;
         }
         
         [Authorize]
@@ -64,6 +71,7 @@ namespace EmpGrid.Api.Controllers
             // TODO: Authentication, authorization.
 
             empRepository.Delete(id);
+            HttpContext.Response.StatusCode = StatusCodes.Status204NoContent;
         }
     }
 }

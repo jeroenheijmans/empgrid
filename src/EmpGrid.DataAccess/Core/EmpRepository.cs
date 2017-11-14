@@ -49,25 +49,20 @@ namespace EmpGrid.DataAccess.Core
             return FindById(id) ?? throw new EntityNotFoundException((GuidEntityIdentity)id);
         }
 
-        public void Put(Emp entity)
+        public PutResult Put(Emp entity)
         {
+            var result = PutResult.Created;
             var existingEntity = FindById(entity.Id);
 
             if (existingEntity != null)
             {
+                result = PutResult.Updated;
                 FakeDatabase.Remove(existingEntity);
             }
 
             FakeDatabase.Add(entity);
-        }
 
-        public void Put(params Emp[] entities)
-        {
-            // TODO: Bulk insert. For now, let's stick with the KISS way.
-            foreach (var emp in entities)
-            {
-                Put(emp);
-            }
+            return result;
         }
 
         public IQueryable<Emp> Query()

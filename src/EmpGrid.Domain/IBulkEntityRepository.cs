@@ -11,8 +11,7 @@ namespace EmpGrid.Domain
         : IEntityRepository<T, Guid, IEntityIdentity<Guid>> 
         where T : BulkEntity, IAggregate
     {
-        void Put(T entity);
-        void Put(params T[] entities);
+        PutResult Put(T entity);
         void Delete(IEntityIdentity<Guid> identity);
         void Delete(Guid id);
         IQueryable<T> Query();

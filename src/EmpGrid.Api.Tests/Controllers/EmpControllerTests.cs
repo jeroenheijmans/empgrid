@@ -3,6 +3,8 @@ using EmpGrid.Api.Models.Core;
 using EmpGrid.Domain;
 using EmpGrid.Domain.Core;
 using FluentAssertions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System;
@@ -23,7 +25,13 @@ namespace EmpGrid.Api.Controllers
                 empRepoMock.Object,
                 loggerMock.Object,
                 mapperMock.Object
-            );
+            )
+            {
+                ControllerContext = new ControllerContext
+                {
+                    HttpContext = new DefaultHttpContext(),
+                }
+            };
         }
 
         [Fact]
@@ -117,6 +125,22 @@ namespace EmpGrid.Api.Controllers
             mapperMock.Verify(m => m.Map<Emp>(It.Is<EmpModel>(model => model.Id == fakeEntity.Id)));
         }
 
+        [Theory]
+        [InlineData(PutResult.Created, StatusCodes.Status201Created)]
+        [InlineData(PutResult.Updated, StatusCodes.Status200OK)]
+        public void Put_returns_http_status_corresponding_to_PutResult(PutResult repoReturnResult, int expectedStatusCode)
+        {
+            var sut = CreateSut();
+
+            empRepoMock
+                .Setup(r => r.Put(It.IsAny<Emp>()))
+                .Returns(repoReturnResult);
+
+            sut.Put(Guid.NewGuid(), new EmpModel());
+
+            sut.HttpContext.Response.StatusCode.Should().Be(expectedStatusCode);
+        }
+
         [Fact]
         public void Delete_calls_repo()
         {
@@ -124,6 +148,14 @@ namespace EmpGrid.Api.Controllers
             var id = Guid.NewGuid();
             sut.Delete(id);
             empRepoMock.Verify(r => r.Delete(id));
+        }
+
+        [Fact]
+        public void Delete_sets_http_status_no_content()
+        {
+            var sut = CreateSut();
+            sut.Delete(Guid.NewGuid());
+            sut.HttpContext.Response.StatusCode.Should().Be(StatusCodes.Status204NoContent);
         }
     }
 }
