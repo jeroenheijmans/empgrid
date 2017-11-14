@@ -2,7 +2,6 @@
 using EmpGrid.Api.Models.Core;
 using EmpGrid.Domain;
 using EmpGrid.Domain.Core;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -40,8 +39,7 @@ namespace EmpGrid.Api.Controllers
             var entity = empRepository.GetById(id);
             return mapper.Map<EmpModel>(entity);
         }
-
-        [Authorize]
+        
         [HttpPut("{id}")]
         public void Put(Guid id, [FromBody]EmpModel empModel)
         {
@@ -62,7 +60,6 @@ namespace EmpGrid.Api.Controllers
                 : StatusCodes.Status200OK;
         }
         
-        [Authorize]
         [HttpDelete("{id}")]
         public void Delete(Guid id)
         {
