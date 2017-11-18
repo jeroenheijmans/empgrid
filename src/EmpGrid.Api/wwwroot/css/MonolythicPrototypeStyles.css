@@ -12,6 +12,10 @@ header {
     text-align: center;
 }
 
+header h1 img {
+    height: 24px;
+}
+
 .grid {
     display: grid;
     grid-gap: 20px;

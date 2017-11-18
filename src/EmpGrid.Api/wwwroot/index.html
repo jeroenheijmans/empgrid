@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
     <link type="text/css" rel="stylesheet" href="css/MonolythicPrototypeStyles.css" />
 </head>
-<body>
-    <header class="header">
-        <h1>EmpGrid Beta</h1>
+<body id="ko-viewport">
+    <header>
+        <h1><img src="img/favicon.png" /> EmpGrid Beta</h1>
     </header>
     
-    <div id="grid" 
-         class="grid" 
-         style="display: none"
+    <!-- ko with: grid -->
+    <div style="display: none"
          data-bind="foreach: emps, 
                     style: { display: 'grid', 'grid-template-columns': colCss, }">
         
@@ -39,6 +38,7 @@
             </div>
         </div>
     </div>
+    <!-- /ko -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" integrity="sha256-owX7sroiO/O1a7h3a4X29A1g3QgqdNvijRQ7V5TH45M=" crossorigin="anonymous"></script>
     <script src="app/MonolythicPrototype.js"></script>

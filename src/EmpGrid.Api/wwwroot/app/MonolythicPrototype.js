@@ -1,50 +1,60 @@
 ﻿(function () {
     const apiBaseUrl = "api/v1";
 
-    function PresenceVm(data, mediums) {
-        var self = this;
+    const goFetch = (path, options) => fetch(`${apiBaseUrl}${path}`, options).then(response => response.json());
+    const GET = (path) => goFetch(path, { method: "GET" });
 
-        self.name = data.mediumId; // Just a default/fallback option
-        self.renderHtml = data.mediumId; // Just a default/fallback option
+    class PresenceVm {
+        constructor(data, mediums) {
+            this.name = data.mediumId; // Just a default/fallback option
+            this.renderHtml = data.mediumId; // Just a default/fallback option
 
-        if (mediums.hasOwnProperty(data.mediumId)) {
-            self.name = mediums[data.mediumId].name;
-            self.renderHtml = `<i class="fa fa-${mediums[data.mediumId].fontAwesomeClass}"></i>`;
-        } 
+            if (mediums.hasOwnProperty(data.mediumId)) {
+                this.name = mediums[data.mediumId].name;
+                this.renderHtml = `<i class="fa fa-${mediums[data.mediumId].fontAwesomeClass}"></i>`;
+            } 
 
-        self.url = data.url;
+            this.url = data.url;
+        }
+    }
+    class EmpVm {
+        constructor(data, mediums) {
+            this.name = data.name;
+            this.emailAddress = data.emailAddress;
+            this.mailto = `mailto:${this.emailAddress}`;
+            this.showMailtoLink = !!this.emailAddress;
+            this.tagLine = data.tagLine || "No tag line provided...";
+            this.presences = data.presences.map(p => new PresenceVm(p, mediums));
+        }
     }
 
-    function EmpVm(data, mediums) {
-        var self = this;
-        
-        self.name = data.name;
-        self.emailAddress = data.emailAddress;
-        self.mailto = `mailto:${self.emailAddress}`;
-        self.showMailtoLink = !!self.emailAddress;
-        self.tagLine = data.tagLine || "No tag line provided...";
-        self.presences = data.presences.map(p => new PresenceVm(p, mediums));
+    class GridVm {
+        constructor(data) {
+            this.emps = data.emps.map(e => new EmpVm(e, data.mediums));
+
+            var nrOfCols = Math.min(8, Math.round(Math.sqrt(this.emps.length)));
+            this.colCss = `repeat(${nrOfCols}, 1fr)`;
+        }
     }
 
-    function GridVm(data) {
-        var self = this;
+    class RootVm {
+        constructor() {
+            this.grid = ko.observable();
+            this.reLoadGrid();
+        }
 
-        self.emps = data.emps.map(e => new EmpVm(e, data.mediums));
-
-        var nrOfCols = Math.min(8, Math.round(Math.sqrt(self.emps.length)));
-        self.colCss = `repeat(${nrOfCols}, 1fr)`;
+        reLoadGrid() {
+            GET("/grid").then(data => {
+                this.grid(new GridVm(data));
+            });
+        }
     }
 
-    function loadGrid() {
-        fetch(`${apiBaseUrl}/grid`, { method: "GET" })
-            .then(response => response.json().then(data => {
-                var vm = new GridVm(data);
-                var viewPort = document.getElementById("grid");
-                ko.applyBindings(vm, viewPort);
-            }));
+    function bootstrap() {
+        var vm = new RootVm();
+        var viewPort = document.getElementById("ko-viewport");
+        ko.applyBindings(vm, viewPort);
     }
 
-    document.addEventListener("DOMContentLoaded", function (event) {
-        loadGrid();
-    });
+    document.addEventListener("DOMContentLoaded", evt => bootstrap());
 }());
