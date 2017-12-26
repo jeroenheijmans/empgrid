@@ -12,13 +12,13 @@ body {
     background: #fcfafa;
     color: #333;
     display: grid;
+    grid-template-rows: auto 1fr;
     width: 100vw;
     height: 100vh;
 }
 
 header {
     text-align: center;
-    border: 1px solid blue;
 }
 
 header h1 img {
@@ -28,7 +28,6 @@ header h1 img {
 .grid {
     grid-gap: 20px;
     padding: 10px;
-    border: 1px solid red;
 }
 
 .emp {
