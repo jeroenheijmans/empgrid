@@ -7,10 +7,83 @@ html, body {
     padding: 0;
 }
 
+button.btn-icon-mini {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 15px;
+    border-radius: 50%;
+    border-width: 0;
+    background: rgba(0,0,0,.025);
+    color: #333;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+button.btn-icon-mini.toggled {
+    box-shadow: inset 1px 1px 2px #ccc;
+    background-color: #ddd;
+}
+
+input {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
+
+.backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    background: white;
+    border: 1px solid #666;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.modal header,
+.modal .fields,
+.modal footer {
+    padding: 10px;
+}
+
+.modal header {
+    font-weight: bold;
+}
+
+.modal .fields {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-row-gap: 10px;
+}
+
+.modal .fields input {
+    width: 100%;
+}
+
+.modal footer {
+    text-align: right;
+}
+
 body {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     background: #fcfafa;
     color: #333;
+}
+
+.app {
     display: grid;
     grid-template-rows: auto 1fr;
     width: 100vw;
@@ -18,11 +91,21 @@ body {
 }
 
 header {
-    text-align: center;
+    display: flex;
+    align-items: stretch;
+}
+
+header h1 {
+    flex: 1;
+    margin: 20px 10px;
 }
 
 header h1 img {
     height: 24px;
+}
+
+header .controls {
+    padding: 10px;
 }
 
 .grid {

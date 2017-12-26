@@ -8,36 +8,87 @@
     <link type="text/css" rel="stylesheet" href="css/MonolythicPrototypeStyles.css" />
 </head>
 <body id="ko-viewport">
-    <header>
-        <h1><img src="img/favicon.png" /> EmpGrid Beta</h1>
-    </header>
+
+    <div class="backdrop" data-bind="visible: !!empInEditMode()"></div>
     
-    <!-- ko with: grid -->
-    <div style="display: none"
-         class="grid"
-         data-bind="foreach: emps, 
-                    style: { display: 'grid', 'grid-template-columns': colCss, }">
-        
-        <div class="emp">
-            <div class="emp-header">
-                <h3>
-                    <span data-bind="text: name"></span>
-                    <span class="emp-mailto" data-bind="visible: showMailtoLink">
-                        <a data-bind="attr: { href: mailto }">
-                            <i class="fa fa-envelope"></i>
-                        </a>
-                    </span>
-                </h3>
-                <p class="emp-tagline" data-bind="text: tagLine"></p>
+    <div class="app">
+        <header>
+            <h1>
+                <img src="img/favicon.png" />
+                <span>EmpGrid Beta</span>
+            </h1>
+            <div class="controls">
+                <button title="Enter edit mode"
+                        class="btn-icon-mini"
+                        data-bind="css: { toggled: $root.isInEditMode }, click: $root.toggleEditMode.bind($root)">
+                    <i class="fa fa-pencil"></i>
+                </button>
             </div>
-            <div class="emp-presences" data-bind="foreach: presences">
-                <div class="emp-presence">
-                    <a data-bind="attr: { href: url, title: name }" target="_blank" href="#">
-                        <span data-bind="html: renderHtml"></span>
-                    </a>
+        </header>
+
+        <!-- ko with: grid -->
+        <div style="display: none"
+             class="grid"
+             data-bind="foreach: emps,
+                    style: { display: 'grid', 'grid-template-columns': colCss, }">
+
+            <div class="emp">
+                <div class="emp-header">
+                    <h3>
+                        <button class="btn-icon-mini"
+                                data-bind="visible: $root.isInEditMode, click: $root.startEditing.bind($root, $data)">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button class="btn-icon-mini"
+                                data-bind="visible: $root.isInEditMode, click: $root.startDeleting.bind($root, $data)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        <span data-bind="text: name"></span>
+                        <span class="emp-mailto" data-bind="visible: showMailtoLink">
+                            <a data-bind="attr: { href: mailto }">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </span>
+                    </h3>
+                    <p class="emp-tagline" data-bind="text: tagLineDisplay"></p>
+                </div>
+                <div class="emp-presences" data-bind="foreach: presences">
+                    <div class="emp-presence">
+                        <a data-bind="attr: { href: url, title: name }" target="_blank" href="#">
+                            <span data-bind="html: renderHtml"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- /ko -->
+    </div>
+
+    <!-- ko with: empInEditMode -->
+    <div class="modal" style="display: none" data-bind="visible: !!$root.empInEditMode()">
+        <header>Edit Emp</header>
+        <div class="fields">
+            <label>Name</label>
+            <div>
+                <input type="text" data-bind="value: name" />
+            </div>
+            <label>E-mail</label>
+            <div>
+                <input type="email" data-bind="value: emailAddress" />
+            </div>
+            <label>Tag line</label>
+            <div>
+                <input type="text" data-bind="value: tagLine" />
+            </div>
+        </div>
+        <footer>
+            <button data-bind="click: $root.commitEditing.bind($root)">
+                Save
+            </button>
+            <button data-bind="click: $root.cancelEditing.bind($root)">
+                Cancel
+            </button>
+        </footer>
     </div>
     <!-- /ko -->
 
