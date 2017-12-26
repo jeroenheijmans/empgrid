@@ -1,7 +1,7 @@
-﻿using System.IO;
+﻿using Microsoft.ApplicationInsights.Extensibility.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.ApplicationInsights.Extensibility.Implementation;
+using System.IO;
 
 namespace EmpGrid.Api
 {
