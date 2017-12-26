@@ -2,14 +2,23 @@
     box-sizing: border-box;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     background: #fcfafa;
     color: #333;
+    display: grid;
+    width: 100vw;
+    height: 100vh;
 }
 
 header {
     text-align: center;
+    border: 1px solid blue;
 }
 
 header h1 img {
@@ -17,9 +26,9 @@ header h1 img {
 }
 
 .grid {
-    display: grid;
     grid-gap: 20px;
     padding: 10px;
+    border: 1px solid red;
 }
 
 .emp {

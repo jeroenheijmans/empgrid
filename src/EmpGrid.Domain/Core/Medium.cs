@@ -10,9 +10,9 @@
         /// </summary>
         public Medium(string id, string name, string fontAwesomeClass)
         {
-            this.Id = id;
-            this.Name = name;
-            this.FontAwesomeClass = fontAwesomeClass;
+            Id = id;
+            Name = name;
+            FontAwesomeClass = fontAwesomeClass;
         }
 
         /// <summary>

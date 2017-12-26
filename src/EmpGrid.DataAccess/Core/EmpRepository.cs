@@ -1,21 +1,21 @@
-﻿using EmpGrid.Domain;
-using EmpGrid.Domain.Core;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EmpGrid.Domain;
+using EmpGrid.Domain.Core;
+using Newtonsoft.Json;
 
 namespace EmpGrid.DataAccess.Core
 {
     public class EmpRepository : IBulkEntityRepository<Emp>
     {
-        private static readonly List<Emp> FakeDatabase = new List<Emp>();
+        private static readonly List<Emp> s_fakeDatabase = new List<Emp>();
 
         public static void SeedFakeDatabase(string path)
         {
             var contents = System.IO.File.ReadAllText(path);
-            FakeDatabase.Clear();
-            FakeDatabase.AddRange(JsonConvert.DeserializeObject<List<Emp>>(contents));
+            s_fakeDatabase.Clear();
+            s_fakeDatabase.AddRange(JsonConvert.DeserializeObject<List<Emp>>(contents));
         }
 
         public void Delete(IEntityIdentity<Guid> identity)
@@ -26,7 +26,7 @@ namespace EmpGrid.DataAccess.Core
         public void Delete(Guid id)
         {
             var item = GetById(id);
-            FakeDatabase.Remove(item);
+            s_fakeDatabase.Remove(item);
         }
 
         public Emp FindById(IEntityIdentity<Guid> identity)
@@ -36,7 +36,7 @@ namespace EmpGrid.DataAccess.Core
 
         public Emp FindById(Guid id)
         {
-            return FakeDatabase.SingleOrDefault(e => e.Id == id);
+            return s_fakeDatabase.SingleOrDefault(e => e.Id == id);
         }
 
         public Emp GetById(IEntityIdentity<Guid> identity)
@@ -57,17 +57,17 @@ namespace EmpGrid.DataAccess.Core
             if (existingEntity != null)
             {
                 result = PutResult.Updated;
-                FakeDatabase.Remove(existingEntity);
+                s_fakeDatabase.Remove(existingEntity);
             }
 
-            FakeDatabase.Add(entity);
+            s_fakeDatabase.Add(entity);
 
             return result;
         }
 
         public IQueryable<Emp> Query()
         {
-            return FakeDatabase.AsQueryable();
+            return s_fakeDatabase.AsQueryable();
         }
     }
 }

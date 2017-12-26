@@ -1,11 +1,11 @@
-﻿using EmpGrid.Domain;
+﻿using System.Collections.Generic;
+using EmpGrid.Domain;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
-using System.Collections.Generic;
 using Xunit;
 
 namespace EmpGrid.Api.Filters

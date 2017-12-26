@@ -1,14 +1,14 @@
-﻿using EmpGrid.Domain;
-using FluentAssertions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using EmpGrid.Domain;
+using FluentAssertions;
 using Xunit;
 
 namespace EmpGrid.DataAccess.Core
 {
     public class MediumRepositoryTests
     {
-        public static readonly string[] TestMediumIds = new[]
+        public static readonly string[] s_testMediumIds = new[]
         {
             "twitter",
             "facebook",
@@ -25,7 +25,7 @@ namespace EmpGrid.DataAccess.Core
         };
 
         public static IList<object[]> TestMediumIdsAsMemberData =>
-            TestMediumIds.Select(id => new object[] { id }).ToList();
+            s_testMediumIds.Select(id => new object[] { id }).ToList();
 
         [Theory]
         [MemberData(nameof(TestMediumIdsAsMemberData))]
@@ -71,7 +71,7 @@ namespace EmpGrid.DataAccess.Core
         {
             var sut = new MediumRepository();
             var result = sut.List();
-            result.Select(m => m.Id).Should().BeEquivalentTo(TestMediumIds);
+            result.Select(m => m.Id).Should().BeEquivalentTo(s_testMediumIds);
         }
 
         [Fact]

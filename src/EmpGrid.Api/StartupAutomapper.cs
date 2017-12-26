@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AutoMapper;
 using EmpGrid.Domain.Core;
-using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EmpGrid.Api
 {

@@ -1,13 +1,13 @@
-﻿using EmpGrid.Domain;
-using EmpGrid.Domain.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using EmpGrid.Domain;
+using EmpGrid.Domain.Core;
 
 namespace EmpGrid.DataAccess.Core
 {
     public class MediumRepository : ISingularRepository<Medium>
     {
-        private static readonly IList<Medium> InMemoryEntities = new []
+        private static readonly IList<Medium> s_inMemoryEntities = new []
         {
             new Medium("twitter", "Twitter", "twitter-square"),
             new Medium("facebook", "Facebook", "facebook-square"),
@@ -30,7 +30,7 @@ namespace EmpGrid.DataAccess.Core
 
         public Medium FindById(string id)
         {
-            return InMemoryEntities.SingleOrDefault(e => e.Id == id);
+            return s_inMemoryEntities.SingleOrDefault(e => e.Id == id);
         }
 
         public Medium GetById(IEntityIdentity<string> identity)
@@ -45,7 +45,7 @@ namespace EmpGrid.DataAccess.Core
 
         public IEnumerable<Medium> List()
         {
-            return InMemoryEntities.ToList();
+            return s_inMemoryEntities.ToList();
         }
     }
 }

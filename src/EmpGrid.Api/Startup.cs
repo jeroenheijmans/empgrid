@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using EmpGrid.DataAccess.Core;
+using EmpGrid.Domain;
+using EmpGrid.Domain.Core;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using EmpGrid.Domain;
-using EmpGrid.Domain.Core;
-using EmpGrid.DataAccess.Core;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace EmpGrid.Api

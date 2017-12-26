@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Linq;
+using AutoMapper;
 using EmpGrid.Api.Models.Core;
 using EmpGrid.Domain;
 using EmpGrid.Domain.Core;
@@ -7,24 +9,22 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System;
-using System.Linq;
 using Xunit;
 
 namespace EmpGrid.Api.Controllers
 {
     public class EmpControllerTests
     {
-        private readonly Mock<ILogger<EmpController>> loggerMock = new Mock<ILogger<EmpController>>();
-        private readonly Mock<IBulkEntityRepository<Emp>> empRepoMock = new Mock<IBulkEntityRepository<Emp>>();
-        private readonly Mock<IMapper> mapperMock = new Mock<IMapper>();
+        private readonly Mock<ILogger<EmpController>> _loggerMock = new Mock<ILogger<EmpController>>();
+        private readonly Mock<IBulkEntityRepository<Emp>> _empRepoMock = new Mock<IBulkEntityRepository<Emp>>();
+        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
 
         private EmpController CreateSut()
         {
             return new EmpController(
-                empRepoMock.Object,
-                loggerMock.Object,
-                mapperMock.Object
+                _empRepoMock.Object,
+                _loggerMock.Object,
+                _mapperMock.Object
             )
             {
                 ControllerContext = new ControllerContext
@@ -39,7 +39,7 @@ namespace EmpGrid.Api.Controllers
         {
             var sut = CreateSut();
 
-            empRepoMock
+            _empRepoMock
                 .Setup(r => r.Query())
                 .Returns((new Emp[2]).AsQueryable());
 
@@ -53,13 +53,13 @@ namespace EmpGrid.Api.Controllers
         {
             var sut = CreateSut();
 
-            empRepoMock
+            _empRepoMock
                 .Setup(r => r.Query())
                 .Returns((new Emp[2]).AsQueryable());
 
             var result = sut.Index();
 
-            mapperMock.Verify(m => m.Map<EmpModel>(It.IsAny<Emp>()), Times.Exactly(2));
+            _mapperMock.Verify(m => m.Map<EmpModel>(It.IsAny<Emp>()), Times.Exactly(2));
         }
 
         [Fact]
@@ -70,11 +70,11 @@ namespace EmpGrid.Api.Controllers
             var fakeEntity = new Emp { Id = Guid.NewGuid() };
             var fakeModel = new EmpModel { Id = fakeEntity.Id };
 
-            empRepoMock
+            _empRepoMock
                 .Setup(r => r.GetById(fakeEntity.Id))
                 .Returns(fakeEntity);
 
-            mapperMock
+            _mapperMock
                 .Setup(m => m.Map<EmpModel>(fakeEntity))
                 .Returns(fakeModel);
 
@@ -91,17 +91,17 @@ namespace EmpGrid.Api.Controllers
             var fakeEntity = new Emp { Id = Guid.NewGuid() };
             var fakeModel = new EmpModel { Id = fakeEntity.Id };
 
-            empRepoMock
+            _empRepoMock
                 .Setup(r => r.GetById(fakeEntity.Id))
                 .Returns(fakeEntity);
 
-            mapperMock
+            _mapperMock
                 .Setup(m => m.Map<Emp>(fakeModel))
                 .Returns(fakeEntity);
 
             sut.Put(fakeModel.Id, fakeModel);
 
-            empRepoMock.Verify(r => r.Put(fakeEntity), Times.Once);
+            _empRepoMock.Verify(r => r.Put(fakeEntity), Times.Once);
         }
 
         [Fact]
@@ -112,17 +112,17 @@ namespace EmpGrid.Api.Controllers
             var fakeEntity = new Emp { Id = Guid.NewGuid() };
             var fakeModel = new EmpModel { Id = Guid.Empty }; // Empty Guid!
 
-            empRepoMock
+            _empRepoMock
                 .Setup(r => r.GetById(fakeEntity.Id))
                 .Returns(fakeEntity);
 
-            mapperMock
+            _mapperMock
                 .Setup(m => m.Map<Emp>(fakeModel))
                 .Returns(fakeEntity);
 
             sut.Put(fakeEntity.Id, fakeModel); // Pass entity (correct) id though!
 
-            mapperMock.Verify(m => m.Map<Emp>(It.Is<EmpModel>(model => model.Id == fakeEntity.Id)));
+            _mapperMock.Verify(m => m.Map<Emp>(It.Is<EmpModel>(model => model.Id == fakeEntity.Id)));
         }
 
         [Theory]
@@ -132,7 +132,7 @@ namespace EmpGrid.Api.Controllers
         {
             var sut = CreateSut();
 
-            empRepoMock
+            _empRepoMock
                 .Setup(r => r.Put(It.IsAny<Emp>()))
                 .Returns(repoReturnResult);
 
@@ -147,7 +147,7 @@ namespace EmpGrid.Api.Controllers
             var sut = CreateSut();
             var id = Guid.NewGuid();
             sut.Delete(id);
-            empRepoMock.Verify(r => r.Delete(id));
+            _empRepoMock.Verify(r => r.Delete(id));
         }
 
         [Fact]
