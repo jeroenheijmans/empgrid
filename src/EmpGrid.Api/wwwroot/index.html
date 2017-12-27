@@ -80,6 +80,21 @@
             <div>
                 <input type="text" data-bind="value: tagLine" />
             </div>
+            <label>Presences</label>
+            <div data-bind="foreach: presences">
+                <div class="precense-edit">
+                    <select data-bind="options: $root.mediumOptions,
+                                       optionsText: 'txt',
+                                       optionsValue: 'val',
+                                       optionsCaption: 'Choose...',
+                                       value: mediumId"></select>
+                    <input type="url" data-bind="value: url" />
+                </div>
+            </div>
+            <label></label>
+            <div>
+                <button data-bind="click: addPresence.bind($data)">Add ...</button>
+            </div>
         </div>
         <footer>
             <button data-bind="click: $root.commitEditing.bind($root)">
@@ -91,6 +106,10 @@
         </footer>
     </div>
     <!-- /ko -->
+
+    <div class="overlay" style="display: none" data-bind="visible: isBusy">
+        <i class="fa fa-cog"></i>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" integrity="sha256-owX7sroiO/O1a7h3a4X29A1g3QgqdNvijRQ7V5TH45M=" crossorigin="anonymous"></script>
     <script src="app/MonolythicPrototype.js"></script>

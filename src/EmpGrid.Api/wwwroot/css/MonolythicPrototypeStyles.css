@@ -27,7 +27,8 @@ button.btn-icon-mini.toggled {
     background-color: #ddd;
 }
 
-input {
+input, 
+select {
     padding: 5px 10px;
     border: 1px solid #ccc;
 }
@@ -39,6 +40,35 @@ input {
     bottom: 0;
     left: 0;
     position: fixed;
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+}
+
+.overlay > .fa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 96px;
+    color: rgba(255, 255, 255, 0.9);
+    animation: rotating 2s linear infinite;
 }
 
 .modal {
@@ -71,6 +101,15 @@ input {
 
 .modal .fields input {
     width: 100%;
+}
+
+.modal .precense-edit {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.modal .precense-edit input {
+    margin-left: 5px;
 }
 
 .modal footer {
