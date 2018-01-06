@@ -91,7 +91,9 @@
 
     class GridVm {
         constructor(data) {
-            this.emps = ko.observableArray(data.emps.map(e => new EmpVm(e, data.mediums)));
+            let _emps = ko.observableArray(data.emps.map(e => new EmpVm(e, data.mediums)));
+
+            this.emps = ko.computed(() => _emps().sort((a,b) => a.name().localeCompare(b.name())));
 
             var nrOfCols = Math.min(8, Math.round(Math.sqrt(this.emps().length)));
             this.colCss = `repeat(${nrOfCols}, 1fr)`;
