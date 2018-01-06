@@ -34,15 +34,18 @@
 
             <div class="emp">
                 <div class="emp-header">
+                    <img class="avatar" data-bind="attr: { src: avatarUrl }" alt="Emp avatar picture" />
                     <h3>
-                        <button class="btn-icon-mini"
-                                data-bind="visible: $root.isInEditMode, click: $root.startEditing.bind($root, $data)">
-                            <i class="fa fa-pencil"></i>
-                        </button>
-                        <button class="btn-icon-mini"
-                                data-bind="visible: $root.isInEditMode, click: $root.startDeleting.bind($root, $data)">
-                            <i class="fa fa-trash"></i>
-                        </button>
+                        <span data-bind="visible: $root.isInEditMode">
+                            <button class="btn-icon-mini"
+                                    data-bind="click: $root.startEditing.bind($root, $data)">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button class="btn-icon-mini"
+                                    data-bind="click: $root.startDeleting.bind($root, $data)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </span>
                         <span data-bind="text: name"></span>
                         <span class="emp-mailto" data-bind="visible: showMailtoLink">
                             <a data-bind="attr: { href: mailto }">

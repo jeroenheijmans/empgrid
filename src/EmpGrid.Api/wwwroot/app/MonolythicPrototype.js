@@ -5,7 +5,7 @@
     // Good enough for here for now...
     function uuidv4() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
         });
     }
@@ -54,6 +54,9 @@
             this.tagLine = ko.observable("");
             this.presences = ko.observableArray([]);
 
+            this._gravatarUrl = ko.observable("");
+            this.avatarUrl = ko.pureComputed(() => this._gravatarUrl() || "img/favicon.png");
+
             this.mailto = ko.pureComputed(() => `mailto:${this.emailAddress()}`);
             this.showMailtoLink = ko.pureComputed(() => !!this.emailAddress());
             this.tagLineDisplay = ko.pureComputed(() => this.tagLine() || "No tag line provided...");
@@ -68,6 +71,7 @@
         }
 
         reset() {
+            this._gravatarUrl(this._resetDto.gravatarUrl);
             this.name(this._resetDto.name);
             this.emailAddress(this._resetDto.emailAddress);
             this.tagLine(this._resetDto.tagLine);
@@ -122,13 +126,11 @@
                         val: data.mediums[k].id
                     };
                 });
-
-                this.empInEditMode(this.grid().emps()[0]); // Debugging (TODO remove)
             });
         }
 
         toggleEditMode() {
-            this.isInEditMode(!this.isInEditMode())
+            this.isInEditMode(!this.isInEditMode());
         }
 
         startDeleting(emp) {
