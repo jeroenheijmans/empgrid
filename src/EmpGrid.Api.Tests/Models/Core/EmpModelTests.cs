@@ -33,5 +33,23 @@ namespace EmpGrid.Api.Models.Core
             var sut = new EmpModel { Presences = new PresenceModel[0] };
             sut.ToString().Should().NotBeEmpty();
         }
+
+        [Fact]
+        public void GravatarUrl_for_email_works()
+        {
+            // Uses Gravatar's example from https://en.gravatar.com/site/implement/hash/
+            var sut = new EmpModel { EmailAddress = "MyEmailAddress@example.com " };
+            sut.GravatarUrl.Should().Be("https://www.gravatar.com/avatar/0bc83cb571cd1c50ba6f3e8a78ef1346");
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("  ")]
+        [InlineData(null)]
+        public void GravatarUrl_for_empty_mail_returns_empty_string(string emailAddress)
+        {
+            var sut = new EmpModel { EmailAddress = emailAddress };
+            sut.GravatarUrl.Should().Be("");
+        }
     }
 }
