@@ -18,6 +18,11 @@
                 <span>EmpGrid Beta</span>
             </h1>
             <div class="controls">
+                <button title="Add new emp"
+                        class="btn-icon-mini"
+                        data-bind="visible: $root.isInEditMode, click: $root.startAdding.bind($root)">
+                    <i class="fa fa-star"></i>
+                </button>
                 <button title="Enter edit mode"
                         class="btn-icon-mini"
                         data-bind="css: { toggled: $root.isInEditMode }, click: $root.toggleEditMode.bind($root)">

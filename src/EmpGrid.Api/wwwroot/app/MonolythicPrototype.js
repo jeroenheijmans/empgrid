@@ -46,6 +46,7 @@
             };
         }
     }
+
     class EmpVm {
         constructor(data, mediums) {
             this._id = data.id;
@@ -76,7 +77,7 @@
             this.name(this._resetDto.name);
             this.emailAddress(this._resetDto.emailAddress);
             this.tagLine(this._resetDto.tagLine);
-            this.presences(this._resetDto.presences.map(p => new PresenceVm(p, this._mediums)));
+            this.presences((this._resetDto.presences || []).map(p => new PresenceVm(p, this._mediums)));
         }
 
         saveResetState(dto) {
@@ -96,12 +97,17 @@
 
     class GridVm {
         constructor(data) {
+            this._mediums = data.mediums;
             this._emps = ko.observableArray(data.emps.map(e => new EmpVm(e, data.mediums)));
 
             this.emps = ko.computed(() => this._emps().sort((a,b) => a.name().localeCompare(b.name())));
 
             var nrOfCols = Math.min(8, Math.round(Math.sqrt(this.emps().length)));
             this.colCss = `repeat(${nrOfCols}, 1fr)`;
+        }
+
+        addEmp(emp) {
+            this._emps.push(emp);
         }
 
         removeEmp(emp) {
@@ -124,6 +130,8 @@
         reLoadGrid() {
             this._dal.getGrid().then(data => {
                 this.grid(new GridVm(data));
+
+                this._mediums = data.mediums;
 
                 this.mediumOptions = Object.keys(data.mediums).map(k => {
                     return {
@@ -150,6 +158,10 @@
             }
         }
 
+        startAdding() {
+            this.empInEditMode(new EmpVm({ id: uuidv4() }, this._mediums));
+        }
+
         startEditing(emp) {
             this.empInEditMode(emp);
         }
@@ -166,9 +178,14 @@
 
             this._dal.saveEmp(dto)
                 .then(json => {
-                    this.isBusy(false);
+                    if (!this.grid().emps().some(e => e.id() === dto.id)) {
+                        this.grid().addEmp(this.empInEditMode());
+                    }
+
                     this.empInEditMode().saveResetState(dto);
                     this.empInEditMode(null);
+
+                    this.isBusy(false);
                 });
         }
     }
