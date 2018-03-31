@@ -138,7 +138,7 @@
             this.isInEditMode(!this.isInEditMode());
         }
 
-        startDeleting(emp) {
+        commitDeleting(emp) {
             if (confirm(`Are you certain you want to delete ${emp.name()}?\n\nThis cannot be undone!`)) {
                 this.isBusy(true);
 
