@@ -49,6 +49,7 @@
     class EmpVm {
         constructor(data, mediums) {
             this._id = data.id;
+            this.id = ko.pureComputed(() => this._id);
             this.name = ko.observable("");
             this.emailAddress = ko.observable("");
             this.tagLine = ko.observable("");
@@ -95,12 +96,16 @@
 
     class GridVm {
         constructor(data) {
-            let _emps = ko.observableArray(data.emps.map(e => new EmpVm(e, data.mediums)));
+            this._emps = ko.observableArray(data.emps.map(e => new EmpVm(e, data.mediums)));
 
-            this.emps = ko.computed(() => _emps().sort((a,b) => a.name().localeCompare(b.name())));
+            this.emps = ko.computed(() => this._emps().sort((a,b) => a.name().localeCompare(b.name())));
 
             var nrOfCols = Math.min(8, Math.round(Math.sqrt(this.emps().length)));
             this.colCss = `repeat(${nrOfCols}, 1fr)`;
+        }
+
+        removeEmp(emp) {
+            this._emps.remove(emp);
         }
     }
 
@@ -135,7 +140,13 @@
 
         startDeleting(emp) {
             if (confirm(`Are you certain you want to delete ${emp.name()}?\n\nThis cannot be undone!`)) {
-                alert("TODO");
+                this.isBusy(true);
+
+                this._dal.deleteEmp(emp.id())
+                    .then(json => {
+                        this.grid().removeEmp(emp);
+                        this.isBusy(false);
+                    });
             }
         }
 
@@ -178,6 +189,12 @@
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(dto),
+            }).then(response => null);
+        }
+
+        deleteEmp(id) {
+            return fetch(`${this._baseUrl}/emp/${id}`, {
+                method: "DELETE",
             }).then(response => null);
         }
     }
