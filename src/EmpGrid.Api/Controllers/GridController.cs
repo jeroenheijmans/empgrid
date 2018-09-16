@@ -2,6 +2,7 @@
 using EmpGrid.Api.Models.Core;
 using EmpGrid.Domain;
 using EmpGrid.Domain.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace EmpGrid.Api.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public GridModel Index()
         {
             return new GridModel

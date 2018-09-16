@@ -10,6 +10,11 @@
         });
     }
 
+    function delay(duration) {
+        return (...args) =>
+            new Promise((resolve, _) => setTimeout(() => resolve(...args), duration));
+    }
+
     class PresenceVm {
         constructor(data, mediums) {
             this._resetDto = data;
@@ -116,19 +121,22 @@
     }
 
     class RootVm {
-        constructor(dal) {
+        constructor(oauth2, dal) {
             this._dal = dal;
+            this._oauth2 = oauth2;
 
             this.grid = ko.observable();
             this.isInEditMode = ko.observable(false);
             this.empInEditMode = ko.observable(null);
-            this.isBusy = ko.observable(false);
+            this.isBusy = ko.observable(true);
 
             this.reLoadGrid();
         }
 
         reLoadGrid() {
-            this._dal.getGrid().then(data => {
+            this.isBusy(true);
+
+            return this._dal.getGrid().then(data => {
                 this.grid(new GridVm(data));
 
                 this._mediums = data.mediums;
@@ -139,11 +147,32 @@
                         val: data.mediums[k].id
                     };
                 });
+
+                this.isBusy(false);
             });
         }
 
         toggleEditMode() {
-            this.isInEditMode(!this.isInEditMode());
+            if (this.isInEditMode()) {
+                this.logout().then(_ => this.isInEditMode(false));
+            } else if (this._oauth2.isAuthorized()) {
+                this.isInEditMode(true);
+            } else {
+                this.login().then(_ => this.isInEditMode(true));
+            }
+        }
+
+        login() {
+            this.isBusy(true);
+
+            return this._oauth2
+                .authorize("admin", "changemequickly")
+                .then(delay(350)) // HACK: To prevent UI flickering
+                .then(_ => this.isBusy(false));
+        }
+
+        logout() {
+            return this._oauth2.clear();
         }
 
         commitDeleting(emp) {
@@ -191,8 +220,9 @@
     }
 
     class Dal {
-        constructor(baseUrl) {
+        constructor(baseUrl, oauth2) {
             this._baseUrl = baseUrl;
+            this._oauth2 = oauth2;
         }
 
         getGrid() {
@@ -204,21 +234,120 @@
         saveEmp(dto) {
             return fetch(`${this._baseUrl}/emp/${dto.id}`, {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: this._oauth2.setBearerToken({ "Content-Type": "application/json" }),
                 body: JSON.stringify(dto),
             }).then(response => null);
         }
 
         deleteEmp(id) {
             return fetch(`${this._baseUrl}/emp/${id}`, {
+                headers: this._oauth2.setBearerToken({}),
                 method: "DELETE",
             }).then(response => null);
         }
     }
 
+    class OAuth2 {
+        constructor(baseUrl) {
+            this._baseUrl = baseUrl;
+        }
+
+        authorize(username, password) {
+            if (!username || !password) {
+                throw new Error("Cannot authorize, missing username and/or password");
+            }
+
+            return this._authorize({
+                "username": username,
+                "password": password,
+                "grant_type": "password",
+            });
+        }
+
+        refresh() {
+            if (!this._refreshToken) {
+                throw new Error("Cannot refresh, we don't have a refresh token");
+            }
+
+            return this._authorize({
+                "refresh_token": this._refreshToken,
+                "grant_type": "refresh_token",
+            });
+        }
+
+        setBearerToken(headers = {}) {
+            if (!this._accessToken) {
+                throw new Error("Can't set access token, have you authorized yet?");
+            }
+
+            headers["Authorization"] = `Bearer ${this._accessToken}`;
+
+            return headers;
+        }
+
+        clear() {
+            this._clearRefreshTimer();
+            this._accessToken = null;
+            this._refreshToken = null;
+            this._tokenRefreshAfterTime = null;
+
+            // For consistent API and future compatability with any fetch
+            // calls we return a promise chain.
+            return Promise.resolve();
+        }
+
+        isAuthorized() {
+            return !!this._accessToken;
+        }
+
+        _authorize(formDataValues) {
+            const formData = new FormData();
+
+            formData.append("scope", "offline_access empgridv1");
+            formData.append("client_id", "empgridv1-js");
+
+            for (const key in formDataValues) {
+                formData.append(key, formDataValues[key]);
+            }
+
+            return fetch(`${this._baseUrl}/connect/token`, {
+                method: "POST",
+                body: formData
+            }).then(response => response.json())
+                .then(json => this._handleTokenResponse(json));
+        }
+
+        _handleTokenResponse(json) {
+            this._accessToken = json["access_token"];
+            this._refreshToken = json["refresh_token"];
+
+            const expiresIn = parseInt(json["expires_in"], 10);
+
+            this._clearRefreshTimer();
+
+            const factor = 0.5;
+            const now = new Date();
+
+            this._tokenRefreshAfterTime = now.setSeconds(now.getSeconds() + (expiresIn * factor));
+
+            this._refreshTimer = setInterval(() => {
+                if (new Date().getTime() > this._tokenRefreshAfterTime) {
+                    this.refresh();
+                }
+            }, 5000);
+        }
+
+        _clearRefreshTimer() {
+            if (this._refreshTimer) {
+                clearInterval(this._refreshTimer);
+            }
+        }
+    }
+
     function bootstrap() {
-        const dal = new Dal("/api/v1");
-        const vm = new RootVm(dal);
+        const oauth2 = new OAuth2("");
+        const dal = new Dal("/api/v1", oauth2);
+        const vm = new RootVm(oauth2, dal);
         const viewPort = document.getElementById("ko-viewport");
         ko.applyBindings(vm, viewPort);
     }
