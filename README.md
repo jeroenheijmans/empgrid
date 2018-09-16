@@ -29,18 +29,13 @@ Warning: the example below might well be out of date when you view it, because t
 
 While this project is still in flux, a simple bullet list here is preferable to GitHub issues or whatnot.
 
-- Authentication and Authorization
+- Authentication and Authorization (in progress!)
 - Craft a real logo along with a real nice favicon
 - Create a real, decent, first design
 - Proper layout on varying viewport sizes
 - Persistence
 - Import/Export
-- Configurable access to specific parts
-- Icons for known Mediums
-- Avatars for Emps
-- Linkable e-mail addresses
-- Emp edit screen
-- Rewrite floating-boxes to actual grid
+- Custom (non-gravatar) avatars for Emps
 - Placeholder texts for Emps without details
 
 Ideas for the more distant future:
