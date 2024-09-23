@@ -2,6 +2,10 @@
 
 See in an instant where you can find a set of colleagues online!
 
+## ⚠️ Notice about updates
+
+Note that this repository is provided "as-is" and will most likely not receive any (security) updates.
+
 ## Introduction
 
 This project's aim is to give an instant overview of what a certain group of people is up to online. More specifically, it helps you see what your colleagues' interests are. This is intended to be useful to both newcomers to a group, as well as existing members.
